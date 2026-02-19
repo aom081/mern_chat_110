@@ -19,6 +19,7 @@ app.use(
     origin: [BASE_URL],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "x-access-token"],
+    credentials: true,
   })
 );
 app.use(cookieParser());
