@@ -138,9 +138,14 @@ const updateProfile = async (req, res) => {
         { new: true }
       );
       if (!updatedUser) {
-        res.status(500).json({ message: "Error while update user profile" });
+        res.status(500).json({
+          message: "Error while update user profile",
+        });
       }
-      res.status(200).json({ message: "User profile updated successfully" });
+      res.status(200).json({
+        message: "User profile updated successfully1",
+        user: updatedUser,
+      });
     } else if (profilePic) {
       //upload pic to cloudinary
       const uploadResponse = await cloudinary.uploader.upload(profilePic);
@@ -159,7 +164,10 @@ const updateProfile = async (req, res) => {
       if (!updatedUser) {
         res.status(500).json({ message: "Error while update user profile" });
       }
-      res.status(200).json({ message: "User profile updated successfully" });
+      res.status(200).json({
+        message: "User profile updated successfully2",
+        user: updatedUser,
+      });
     } else if (fullName) {
       const updatedUser = await User.findByIdAndUpdate(
         userId,
@@ -171,7 +179,10 @@ const updateProfile = async (req, res) => {
       if (!updatedUser) {
         res.status(500).json({ message: "Error while updating user profile" });
       }
-      res.status(200).json({ message: "User profile updated successfully" });
+      res.status(200).json({
+        message: "User profile updated successfully3",
+        user: updatedUser,
+      });
     } else {
       res.status(200).json({ message: "Nothing is updated" });
     }

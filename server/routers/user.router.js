@@ -13,6 +13,6 @@ router.post("/signup", signUp);
 router.post("/login", login);
 router.post("/logout", logOut);
 router.put("/update-profile", protectedRoute, updateProfile);
-router.get("/check", protectedRoute, checkAuth);
+router.get("/check", checkAuth);
 
 module.exports = router;
