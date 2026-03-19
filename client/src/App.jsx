@@ -3,13 +3,17 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
+import Setting from "./pages/Setting";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { useEffect } from "react";
 import { useAuthStore } from "./store/useAuthStore";
+import { useThemeStore } from "./store/useThemeStore";
 import { Loader, LogIn } from "lucide-react";
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -28,6 +32,12 @@ function App() {
         <Route
           path="/"
           element={authUser ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route path="/settings" element={<Setting />} />
+        <Route path="/setting" element={<Navigate to="/settings" />} />
+        <Route
+          path="/profile"
+          element={authUser ? <Profile /> : <Navigate to="/login" />}
         />
         <Route
           path="/signup"

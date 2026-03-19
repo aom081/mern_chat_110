@@ -21,7 +21,7 @@ const getMessage = async (req, res) => {
   try {
     const myId = req.user._id;
     const { id: userToChat } = req.params;
-    console.log(myId, userToChat);
+    // console.log(myId, userToChat);
 
     const messages = await Message.find({
       $or: [
@@ -63,6 +63,13 @@ const sendMessage = async (req, res) => {
       file: fileUrl,
     });
     await newMessage.save();
+    
+    //send signal to recipient about new message
+    const receiverSocketId = getReceiverSocketId(recipientId.toString());
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
+
     res.json(newMessage);
   } catch (error) {
     console.log(error);

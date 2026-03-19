@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
 const protectedRoute = async (req, res, next) => {
-  console.log("Auth Middleware");
+  // console.log("Auth Middleware");
 
   try {
     // console.log(req.cookies);
